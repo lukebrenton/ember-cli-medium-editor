@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-medium-editor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Ember cli wrapper for the Medium Editor (http://daviferreira.github.io/medium-editor)",
   "main": "index.js",
   "scripts": {
