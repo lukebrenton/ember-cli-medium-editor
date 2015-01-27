@@ -17,5 +17,9 @@
     "medium",
     "wysiwyg",
     "rich-text"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukebrenton/ember-cli-medium-editor"
+  }
 }
