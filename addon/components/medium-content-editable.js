@@ -12,9 +12,7 @@ export default Ember.Component.extend({
     return editable ? 'true' : undefined;
   }).property('editable'),
   didInsertElement: function() {
-    new MediumEditor(this.$(), {
-      // Medium editor options Here
-    });
+    new MediumEditor(this.$(), (this.get('options') ? JSON.parse(this.get('options')) : {}));
     return this.setContent();
   },
   focusOut: function() {

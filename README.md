@@ -18,30 +18,12 @@ in your Ember CLI project's root.
 ## Usage
 Providing the model and route are set up correctly, content typed in the contentEditable field should get bound to the ember model's attribute.
 
-You should then be able to use it in your handlebars templates like this:
+You should be able to use it in your handlebars templates like this e.g.:
 ```
-{{medium-content-editable valueBinding="body"}}
+{{ medium-content-editable value=body options='{"buttons": ["bold", "italic"]}' }}
 ```
-valueBinding being whatever attribute you're trying to bind it to.
-
-
-## Todo
-Pass options to MediumEditor initialization. For now you can override it, however:
-```
-// app/components/medium-content-editable.js
-import Ember from 'ember';
-import MediumContentEditable from 'ember-cli-medium-editor/components/medium-content-editable';
-
-export default MediumContentEditable.extend({
-  didInsertElement: function() {
-    new MediumEditor(this.$(), {
-      // Medium editor options here.
-    });
-    return this.setContent();
-  }
-});
-```
-Multiple component support, i.e. different options per initialization
+Value (required): whatever attribute you're trying to bind it to.
+Options (optional): Json string of the medium editor options you want to initialize with. Options [here](https://github.com/daviferreira/medium-editor).
 
 
 Thanks to Davi Ferreira for the editor:
