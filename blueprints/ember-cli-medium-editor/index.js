@@ -3,6 +3,6 @@ module.exports = {
   },
 
   afterInstall: function() {
-    return this.addBowerPackageToProject('medium-editor', '2.0.0');
+    return this.addBowerPackageToProject('medium-editor', '3.0.9');
   }
 };

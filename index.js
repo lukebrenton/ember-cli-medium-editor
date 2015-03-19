@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'Medium Editor',
+  name: 'ember-cli-medium-editor',
 
   included: function(app) {
     this._super.included(app);
