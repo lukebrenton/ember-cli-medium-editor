@@ -33,6 +33,9 @@ export default Ember.View.extend({
     return editable ? 'true' : undefined;
   }).property('editable'),
   didInsertElement: function() {
+    new MediumEditor(this.$(), {
+      // Medium editor options Here
+    });
     return this.setContent();
   },
   focusOut: function() {
