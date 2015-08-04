@@ -33,10 +33,14 @@ export default Ember.Component.extend({
   render: function(buffer) {
     buffer.push((this.get('value') || null));
   },
+  valueDidChange: function() {
+    if (this.$() && this.get('value') !== this.$().html()) {
+      this.setContent();
+    }
+  }.observes('value'),
   setContent: function() {
-    var this_m = this;
-    if (this_m.$()) {
-      return this_m.$().html(this_m.get('value'));
+    if (this.$()) {
+      return this.$().html(this.get('value'));
     }
   }
 });
