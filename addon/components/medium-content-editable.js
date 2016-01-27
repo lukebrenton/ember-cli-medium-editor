@@ -30,9 +30,6 @@ export default Ember.Component.extend({
       return this.set('value', this.$().html());
     }
   },
-  render: function(buffer) {
-    buffer.push((this.get('value') || null));
-  },
   valueDidChange: function() {
     if (this.$() && this.get('value') !== this.$().html()) {
       this.setContent();
