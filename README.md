@@ -8,15 +8,14 @@ packaged as an [Ember CLI](https://github.com/ember-cli/ember-cli) Addon.
 To install simply run:
 
 ```
-npm install --save ember-cli-medium-editor
-ember g ember-cli-medium-editor
+ember install ember-cli-medium-editor
 Add "MediumEditor" to the "predef" section in .jshintrc
 ```
 in your Ember CLI project's root.
 
 ## Themes and CSS
-To change or customize the theme add `mediumEditorOptions` to your 
-`ember-cli-build.js` file. Themes available include `bootstrap`, `default`, 
+To change or customize the theme add `mediumEditorOptions` to your
+`ember-cli-build.js` file. Themes available include `bootstrap`, `default`,
 `flat`, `mani`, and `roman`. For older ember-cli versions, look in Brocfile.js.
 
 ```javascript
