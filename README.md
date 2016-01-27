@@ -14,6 +14,30 @@ Add "MediumEditor" to the "predef" section in .jshintrc
 ```
 in your Ember CLI project's root.
 
+## Themes and CSS
+To change or customize the theme add `mediumEditorOptions` to your 
+`ember-cli-build.js` file. Themes available include `bootstrap`, `default`, 
+`flat`, `mani`, and `roman`. For older ember-cli versions, look in Brocfile.js.
+
+```javascript
+var app = new EmberApp(defaults, {
+  mediumEditorOptions: {
+    theme: 'bootstrap'
+  }
+});
+```
+
+To use provide your own theme set `theme: false` and provide your own css within
+your project. To remove the base styles set `excludeBaseStyles: true`.
+
+```javascript
+var app = new EmberApp(defaults, {
+  mediumEditorOptions: {
+    theme: 'bootstrap',
+    excludeBaseStyles: true
+  }
+});
+```
 
 ## Usage
 Providing the model and route are set up correctly, content typed in the contentEditable field should get bound to the ember model's attribute.

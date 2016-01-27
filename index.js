@@ -6,9 +6,18 @@ module.exports = {
 
   included: function(app) {
     this._super.included(app);
+    var options = app.options.mediumEditorOptions || {};
 
     this.app.import(app.bowerDirectory + '/medium-editor/dist/js/medium-editor.js');
-    this.app.import(app.bowerDirectory + '/medium-editor/dist/css/medium-editor.css');
-    this.app.import(app.bowerDirectory + '/medium-editor/dist/css/themes/flat.css');
+
+    if (!options.excludeBaseStyles) {
+      this.app.import(app.bowerDirectory + '/medium-editor/dist/css/medium-editor.css');
+    }
+
+    if (options.theme) {
+      this.app.import(app.bowerDirectory + '/medium-editor/dist/css/themes/' + options.theme + '.css');
+    } else if (options.theme !== false) {
+      this.app.import(app.bowerDirectory + '/medium-editor/dist/css/themes/default.css');
+    }
   }
 };
