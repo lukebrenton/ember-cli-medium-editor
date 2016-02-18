@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { computed, observer } = Ember;
+
 export default Ember.Component.extend({
   tagName: 'div',
   attributeBindings: ['contenteditable'],
@@ -7,10 +9,10 @@ export default Ember.Component.extend({
   isUserTyping: false,
   plaintext: false,
   classNames: ['editable'],
-  contenteditable: (function() {
-  var editable = this.get('editable');
+  contenteditable: computed('editable', function() {
+    var editable = this.get('editable');
     return editable ? 'true' : undefined;
-  }).property('editable'),
+  }),
   didInsertElement: function() {
     new MediumEditor(this.$(), this.get('options'));
     return this.setContent();
@@ -30,11 +32,11 @@ export default Ember.Component.extend({
       return this.set('value', this.$().html());
     }
   },
-  valueDidChange: function() {
+  valueDidChange: observer('value', function() {
     if (this.$() && this.get('value') !== this.$().html()) {
       this.setContent();
     }
-  }.observes('value'),
+  }),
   setContent: function() {
     if (this.$()) {
       return this.$().html(this.get('value'));
