@@ -49,7 +49,9 @@ Value (required): the attribute you're trying to bind it to.
 Options (optional): Json, options you want the editor to initialize with. You'll have to set these on the controller or component you're calling the editor component from. Options [here](https://github.com/daviferreira/medium-editor). e.g.
 ```
 mediumEditorOptions: {
-  "buttons": ['bold', 'italic', 'underline', 'anchor', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
+  "toolbar": {
+    "buttons": ['bold', 'italic', 'underline', 'anchor', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
+  },
   "checkLinkFormat": true,
   "forcePlainText": true
 }
