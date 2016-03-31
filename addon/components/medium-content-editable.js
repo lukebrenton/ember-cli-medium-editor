@@ -9,12 +9,14 @@ export default Ember.Component.extend({
   isUserTyping: false,
   plaintext: false,
   classNames: ['editable'],
+  mediumEditor: undefined,
   contenteditable: computed('editable', function() {
     var editable = this.get('editable');
     return editable ? 'true' : undefined;
   }),
   didInsertElement: function() {
-    new MediumEditor(this.$(), this.get('options'));
+    var _editor = new MediumEditor(this.$(), this.get('options'));
+    this.set('mediumEditor', _editor);
     return this.setContent();
   },
   focusOut: function() {
@@ -38,8 +40,8 @@ export default Ember.Component.extend({
     }
   }),
   setContent: function() {
-    if (this.$()) {
-      return this.$().html(this.get('value'));
+    if (this.$() && this.get('mediumEditor')) {
+      this.get('mediumEditor').setContent(this.get('value'));
     }
   }
 });
