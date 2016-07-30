@@ -28,12 +28,12 @@ export default Ember.Component.extend({
       } else if (typeof action === 'function') {
         action();
       }
-
-      return this.toggleProperty('isUserTyping');
     }
+
+    return this.set('isUserTyping', false);
   },
   focusOut: function() {
-    this.setUserFinishedTyping();
+    return this.setUserFinishedTyping();
   },
   keyDown: function(event) {
     if (!event.metaKey) {
