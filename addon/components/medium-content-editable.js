@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, observer } = Ember;
+const { computed, observer, run } = Ember;
 
 export default Ember.Component.extend({
   tagName: 'div',
@@ -19,11 +19,25 @@ export default Ember.Component.extend({
     this.set('mediumEditor', _editor);
     return this.setContent();
   },
+  setUserFinishedTyping: function() {
+    if (this.get('isUserTyping')) {
+      let action = this.attrs.onFinishedTyping;
+
+      if (typeof action === 'string') {
+        this.sendAction(action);
+      } else if (typeof action === 'function') {
+        action();
+      }
+
+      return this.toggleProperty('isUserTyping');
+    }
+  },
   focusOut: function() {
-    return this.set('isUserTyping', false);
+    this.setUserFinishedTyping();
   },
   keyDown: function(event) {
     if (!event.metaKey) {
+      run.debounce(this, 'setUserFinishedTyping', 2000);
       return this.set('isUserTyping', true);
     }
   },
