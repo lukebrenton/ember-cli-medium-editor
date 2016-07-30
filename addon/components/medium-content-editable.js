@@ -24,7 +24,7 @@ export default Ember.Component.extend({
       let action = this.attrs.onFinishedTyping;
 
       if (typeof action === 'string') {
-        this.sendAction(action);
+        this.sendAction('onFinishedTyping');
       } else if (typeof action === 'function') {
         action();
       }
