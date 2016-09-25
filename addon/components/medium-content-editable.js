@@ -28,8 +28,7 @@ export default Ember.Component.extend({
 
     // Setup listeners this way to support IE11 / IE10
     // (browsers that don't natively support the input event)
-    const ctx = this;
-    Ember.run.scheduleOnce('afterRender', ctx, function() {
+    Ember.run.scheduleOnce('afterRender', this, function() {
       const $el = Ember.$(this.get('element'));
       $el.bind('blue keyup paste copy cut mouseup input', this.triggerChange.bind(this));
       Ember.$('.medium-editor-toolbar').bind('mouseup',   this.triggerChange.bind(this));
