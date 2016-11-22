@@ -30,7 +30,7 @@ export default Ember.Component.extend({
     // (browsers that don't natively support the input event)
     Ember.run.scheduleOnce('afterRender', this, function() {
       const $el = Ember.$(this.get('element'));
-      $el.bind('blue keyup paste copy cut mouseup input', this.triggerChange.bind(this));
+      $el.bind('blur keyup paste copy cut mouseup input', this.triggerChange.bind(this));
       Ember.$('.medium-editor-toolbar').bind('mouseup',   this.triggerChange.bind(this));
     });
     return this.setContent();
@@ -38,7 +38,7 @@ export default Ember.Component.extend({
 
   willDestroyElement() {
     const $el = Ember.$(this.get('element'));
-    $el.unbind('blue keyup paste copy cut mouseup input', this.triggerChange.bind(this));
+    $el.unbind('blur keyup paste copy cut mouseup input', this.triggerChange.bind(this));
     Ember.$('.medium-editor-toolbar').unbind('mouseup',   this.triggerChange.bind(this));
   },
 
