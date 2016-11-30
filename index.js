@@ -8,7 +8,9 @@ module.exports = {
     this._super.included(app);
     var options = app.options.mediumEditorOptions || {};
 
-    this.app.import(app.bowerDirectory + '/medium-editor/dist/js/medium-editor.js');
+    if (!process.env.EMBER_CLI_FASTBOOT) {
+      this.app.import(app.bowerDirectory + '/medium-editor/dist/js/medium-editor.js');
+    }
 
     if (!options.excludeBaseStyles) {
       this.app.import(app.bowerDirectory + '/medium-editor/dist/css/medium-editor.css');
