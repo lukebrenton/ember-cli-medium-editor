@@ -43,9 +43,11 @@ Providing the model and route are set up correctly, content typed in the content
 
 You should be able to use it in your handlebars templates like this e.g.:
 ```
-{{ medium-content-editable value=body options=mediumEditorOptions}}
+{{ medium-content-editable value=body options=mediumEditorOptions onFinishedTyping=(action "optionalActionNameHere")}}
 ```
+
 Value (required): the attribute you're trying to bind it to.
+
 Options (optional): Json, options you want the editor to initialize with. You'll have to set these on the controller or component you're calling the editor component from. Options [here](https://github.com/daviferreira/medium-editor). e.g.
 ```
 mediumEditorOptions: {
@@ -57,5 +59,13 @@ mediumEditorOptions: {
 }
 ```
 
-Thanks to Davi Ferreira for the editor:
+onFinishedTyping (optional): This is an action that will be called after a 2 second debounce after the user has stopped typing. Can be used as an autosave etc. For example in the controller or component:
+```
+optionalActionNameHere: function() {
+  console.log('Bla');
+}
+```
+
+
+Thanks to Davi Ferreira for the editor and to everyone else who has contributed:
 https://github.com/daviferreira/medium-editor
