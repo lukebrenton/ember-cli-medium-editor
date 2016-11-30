@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, observer } = Ember;
+const { computed, observer, run } = Ember;
 
 export default Ember.Component.extend({
   tagName:            'div',
@@ -36,6 +36,20 @@ export default Ember.Component.extend({
     return this.setContent();
   },
 
+  setUserFinishedTyping: function() {
+    if (this.get('isUserTyping')) {
+      let action = this.attrs.onFinishedTyping;
+
+      if (typeof action === 'string') {
+        this.sendAction('onFinishedTyping');
+      } else if (typeof action === 'function') {
+        action();
+      }
+    }
+
+    return this.set('isUserTyping', false);
+  },
+
   willDestroyElement() {
     const $el = Ember.$(this.get('element'));
     $el.unbind('blur keyup paste copy cut mouseup input', this.triggerChange.bind(this));
@@ -52,11 +66,12 @@ export default Ember.Component.extend({
   },
 
   focusOut() {
-    return this.set('isUserTyping', false);
+    return this.setUserFinishedTyping();
   },
 
   keyDown(event) {
     if (!event.metaKey) {
+      run.debounce(this, 'setUserFinishedTyping', 2000);
       return this.set('isUserTyping', true);
     }
   },
