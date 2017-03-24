@@ -37,6 +37,8 @@ export default Ember.Component.extend({
   },
 
   setUserFinishedTyping: function() {
+    if (this.isDestroyed) return;
+    
     if (this.get('isUserTyping')) {
       let action = this.attrs.onFinishedTyping;
 
