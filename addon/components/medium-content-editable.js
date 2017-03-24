@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import MediumEditor from 'medium-editor';
 
 const { computed, observer, run } = Ember;
 
