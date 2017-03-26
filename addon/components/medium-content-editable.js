@@ -33,6 +33,9 @@ export default Ember.Component.extend({
       $el.bind('blur keyup paste copy cut mouseup input', this.triggerChange.bind(this));
       Ember.$('.medium-editor-toolbar').bind('mouseup',   this.triggerChange.bind(this));
     });
+    
+    this.sendAction('didInit', _editor);
+    
     return this.setContent();
   },
 
