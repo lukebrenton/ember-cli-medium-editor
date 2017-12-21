@@ -32,6 +32,7 @@ export default Ember.Component.extend({
       const $el = Ember.$(this.get('element'));
       $el.bind('blur keyup paste copy cut mouseup input', this.triggerChange.bind(this));
       Ember.$('.medium-editor-toolbar').bind('mouseup',   this.triggerChange.bind(this));
+      this.get('mediumEditor').subscribe('editableInput', this.triggerChange.bind(this));
     });
     return this.setContent();
   },
@@ -58,11 +59,11 @@ export default Ember.Component.extend({
   },
 
   change() {
-    if (this.get('plaintext')) {
-      return this.set('value', this.$().text());
-    } else {
-      return this.set('value', this.$().html());
+    let newValue = this.get('plaintext') ? this.$().text() : this.$().html();
+    if (this.get('value') !== newValue) {
+        this.sendAction('onUpdate');
     }
+    return this.set('value', newValue);
   },
 
   focusOut() {
