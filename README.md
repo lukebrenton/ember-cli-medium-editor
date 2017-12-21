@@ -43,7 +43,9 @@ Providing the model and route are set up correctly, content typed in the content
 
 You should be able to use it in your handlebars templates like this e.g.:
 ```
-{{ medium-content-editable value=body options=mediumEditorOptions onFinishedTyping=(action "optionalActionNameHere")}}
+{{ medium-content-editable value=body options=mediumEditorOptions
+  onFinishedTyping=(action "optionalActionNameHere")
+  onUpdate=(action "optionalUpdateActionHere")}}
 ```
 
 Value (required): the attribute you're trying to bind it to.
@@ -66,6 +68,8 @@ optionalActionNameHere: function() {
 }
 ```
 
+onUpdate (optional): This is an action that will be called with no debounce on any change in the
+medium editor. Unlike onFinishedTyping, it will fire on copy/paste events and format changes.
 
 Thanks to Davi Ferreira for the editor and to everyone else who has contributed:
 https://github.com/daviferreira/medium-editor
